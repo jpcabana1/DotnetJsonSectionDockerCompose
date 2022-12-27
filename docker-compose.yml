@@ -3,5 +3,8 @@ services:
   app:
     container_name: env-test
     image: dotnetjsonsectiondockercompose
+    environment:
+      AllowedHosts: '*'
+      Core: '{"Application":{"UrlHost":"http://fake.host/get"},"Storage":{"ConnectionString":"ConnectionString","ContainerName":"ContainerName"}}'
     ports:
       - 5001:80

@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -10,7 +12,12 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.MapGet("/env-var", (IConfiguration configuration) =>
-    configuration.GetSection("Core").Get<Core>()
+{
+    Console.WriteLine("Core: " + configuration["Core"]);
+    Console.WriteLine("AllowedHosts: " + configuration.GetSection("AllowedHosts").Get<string>());
+    return configuration.GetSection("Core").Get<Core>();
+}
+
 ).WithName("GetEnvVar");
 
 app.Run();
