@@ -4,7 +4,11 @@ services:
     container_name: env-test
     image: dotnetjsonsectiondockercompose
     environment:
-      AllowedHosts: '*'
-      Core: '{"Application":{"UrlHost":"http://fake.host/get"},"Storage":{"ConnectionString":"ConnectionString","ContainerName":"ContainerName"}}'
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Application__UrlHost=http://fake.host/get
+      - Storage__ConnectionString=ConnectionString
+      - Storage__ContainerName=ContainerName
+      - Array__0__Value=One
+      - Array__1__Value=Two
     ports:
-      - 5001:80
+      - "5001:80"
