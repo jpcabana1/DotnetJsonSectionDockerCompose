@@ -1,3 +1,4 @@
+using System.Net.Mime;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -28,19 +29,12 @@ app.MapGet("/env-var", (IConfiguration configuration) =>
 }
 ).WithName("GetEnvVar");
 
+
+app.MapGet("/get-application", (IConfiguration configuration) => configuration.GetSection("Application").Get<Application>()).WithName("GetApplication");
+app.MapGet("/get-storage", (IConfiguration configuration) => configuration.GetSection("Storage").Get<Storage>()).WithName("GetStorage");
+
 app.Run();
 
-
-record SectionConfiguration
-{
-    public Core? Core { get; set; }
-}
-
-record Core
-{
-    public Application? Application { get; set; }
-    public Storage? Storage { get; set; }
-}
 
 record Application
 {
