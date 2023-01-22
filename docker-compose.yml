@@ -2,7 +2,7 @@ version: '3.9'
 services:
   app:
     container_name: env-test
-    image: dotnetjsonsectiondockercompose
+    image: section-compose
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - Application__UrlHost=http://fake.host/get
